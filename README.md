@@ -1,1 +1,1 @@
-# Pok-Shop---Juan-Gonz-lez-Mansilla
+# Pok-Shop---Juan-González-Mansilla

@@ -1,1 +1,1 @@
-# Pok-Shop---Juan-González-Mansilla
+# PokéShop---Juan-González-Mansilla

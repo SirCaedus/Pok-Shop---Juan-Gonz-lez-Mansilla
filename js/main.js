@@ -2,8 +2,8 @@
 
 const items = [
     {id: 1, clase: 'Ball',  nombre: 'Poke Ball', precio: 20, stock: 0, descripcion:'La ball más común. Sirve para capturar Pokémon salvajes.'},
-    {id: 2, clase: 'Ball',  nombre: 'Super Ball', precio: 60, stock: 0, descripcion:'Es buena. Tiene más índice de éxito en capturas que la PokeBall.'},
-    {id: 3, clase: 'Ball', nombre: 'Ultra Ball', precio: 120, stock: 0, descripcion:'Es muy buena. Tiene más índice de éxito que la SuperBall.'},
+    {id: 2, clase: 'Ball',  nombre: 'Super Ball', precio: 60, stock: 0, descripcion:'Es buena. Tiene más índice de éxito en capturas que la Poke Ball.'},
+    {id: 3, clase: 'Ball', nombre: 'Ultra Ball', precio: 120, stock: 0, descripcion:'Es muy buena. Tiene más índice de éxito que la Super Ball.'},
     {id: 4, clase: 'Ball', nombre: 'Lujo Ball', precio: 100, stock: 0, descripcion:'Es muy acogedora. Hace a los Pokémon más simpáticos.'},
     {id: 5, clase: 'Ball', nombre: 'Honor Ball', precio: 20, stock: 0, descripcion:'Es muy particular. Se creó para una conmemoración.'},
     {id: 6, clase: 'Ball', nombre: 'Nido Ball', precio: 100, stock: 0, descripcion:'Es excelente para capturar Pokémon de menor nivel.'},
@@ -106,7 +106,7 @@ do {
                     const resultado = items.find((elemento) => elemento.id === itemElegido)
                     if (resultado != undefined){
                         findFlag = true
-                        stringProducto = resultado.nombre + ' id: ' + resultado.id + ' precio: ' + resultado.precio + ' stock: ' + resultado.stock + ' descripción: ' + resultado.descripcion
+                        stringProducto = resultado.nombre + ' id: ' + resultado.id + ' precio: $' + resultado.precio + ' stock: ' + resultado.stock + ' descripción: ' + resultado.descripcion
                         cantidadMax = resultado.stock
                         precioProducto = resultado.precio
                         console.log("cantidad " + cantidadMax)
@@ -152,10 +152,10 @@ do {
             decision = 0
             console.log(carrito)
             let total = carrito.reduce((acumulador,elemento) => acumulador + elemento.subtotal,0);
-            decision = prompt(`el valor de compra del carrito es de: ${total}. Si quiere pagar, ingrese 1. Si quiere vaciar el carrito, ingrese 2. Si quiere salir, pulse 3.`);
+            decision = prompt(`el valor de compra del carrito es de: $${total}. Si quiere pagar, ingrese 1. Si quiere vaciar el carrito, ingrese 2. Si quiere salir, pulse 3.`);
             switch(decision){
                 case "1":
-                    console.log("pagado: " + total)
+                    console.log("pagado: $" + total)
                     alert("¡Gracias! esperamos que vuelva pronto.")
                     menuFlag = false
                     break;

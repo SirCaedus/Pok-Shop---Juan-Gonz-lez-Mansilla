@@ -1,4 +1,4 @@
-* {
+body {
     margin: 0;
     padding: 0;
 }
@@ -15,3 +15,12 @@
     height: 180px;
     margin: 20px;
 }
+
+
+#carrito {
+  width: auto;
+  height: auto;
+  text-align: end;
+}
+
+

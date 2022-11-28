@@ -30,10 +30,11 @@ const items = [
 
 let carrito = [];
 
-const btnCarrito = document.getElementById('btnCarrito')
 const btnVaciar = document.getElementById('btnVaciar')
 const btnComprar = document.getElementById('btnComprar')
+
 const btnAdd = [...document.querySelectorAll('.btnAdd')]
+const inputAdd = [...document.querySelectorAll('.inputAdd')]
 
 const domCarrito = document.getElementById('carrito')
 const domTotal = document.getElementById('total')
@@ -42,16 +43,24 @@ document.addEventListener('DOMContentLoaded',()=>{
     btnAdd.forEach((btn) => {
         btn.onclick = (evt) =>{
             evt.preventDefault()
-            carrito.push(evt.target.getAttribute('data-id'))
+
+            let id = evt.target.getAttribute('data-id')
+            let counter = 0
+
+            inputAdd.forEach( (input) => {
+               if (inputAdd.target.getAttribute('data-id') === id) {
+                counter = input.target.value
+               };
+            });
+
+            do {
+                carrito.push(evt.target.getAttribute('data-id'))
+            } while (i = 1 < counter, i++);
+
             renderizarCarrito()
             actualizarLocalStorage()
         };
     });
-        
-    btnCarrito.addEventListener('click',(evt)=>{
-        evt.preventDefault()
-        domCarrito.style.display === 'flex' ? domCarrito.style.display = 'none' : domCarrito.style.display = 'flex'
-    }); 
     
     btnVaciar.addEventListener('click',(evt)=>{
         evt.preventDefault()

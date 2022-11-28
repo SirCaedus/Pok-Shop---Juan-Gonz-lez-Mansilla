@@ -26,11 +26,13 @@
                         <a class="nav-link" href="#Article1">Medicinas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="btnCarrito" href="#">Carrito</a>
+                        <a class="nav-link" id="btnCarrito" data-bs-toggle="collapse" data-bs-target="#carritoCollapse" href="#">Carrito</a>
+                        <div class="collapse" id="carritoCollapse">
                             <ul id="carrito" class="list-group"></ul>
                             <div id="total"></div>
                             <button id="btnComprar" class="btn btn-success">Comprar</button>
                             <button id="btnVaciar" class="btn btn-danger">Vaciar</button>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -48,7 +50,20 @@
                         <p class="card-text descripcion">La ball más común. Sirve para capturar Pokémon salvajes.</p>
                         <p class="card-text precio">Precio: $20</p>
                         <p class="card-text stock">Stock: </p>
-                        <a href="#" class="btn btn-primary btnAdd" data-id= "1" data-nombre="Poke Ball" data-precio="20">Agregar al Carrito</a>                    
+
+                        <p class="col-md-3 col-lg-3 col-xl-5 d-flex">
+                            <button class="btn btn-light px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                -
+                            </button>
+
+                            <input class="inputAdd form-control form-control-sm" data-id= 1 min="0" max="20" name="quantity" value="1" type="number" readonly/>
+                            
+                            <button class="btn btn-light px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                +
+                            </button>
+                        </p>
+
+                        <button class="btn btn-primary btnAdd" data-id= 1 data-nombre="Poke Ball" data-precio="20">Agregar al Carrito</button>                    
                     </div>
                 </div>
             </div>

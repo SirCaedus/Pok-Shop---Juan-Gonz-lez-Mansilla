@@ -35,9 +35,13 @@ const btnComprar = document.getElementById('btnComprar')
 
 const btnAdd = [...document.querySelectorAll('.btnAdd')]
 const inputAdd = [...document.querySelectorAll('.inputAdd')]
+//const inputMinus = [...document.querySelectorAll('.inputMinus')]
+//const inputPlus = [...document.querySelectorAll('.inputPlus')]
 
 const domCarrito = document.getElementById('carrito')
 const domTotal = document.getElementById('total')
+
+const input1 = document.getElementById('input1')
 
 document.addEventListener('DOMContentLoaded',()=>{   
     btnAdd.forEach((btn) => {
@@ -46,22 +50,39 @@ document.addEventListener('DOMContentLoaded',()=>{
 
             let id = evt.target.getAttribute('data-id')
             let counter = 0
+            let i = 1 
 
-            inputAdd.forEach( (input) => {
-               if (inputAdd.target.getAttribute('data-id') === id) {
-                counter = input.target.value
+            inputAdd.forEach((input) => {
+               if (input.getAttribute('data-id') === id) {
+                counter = input.value
                };
             });
 
             do {
                 carrito.push(evt.target.getAttribute('data-id'))
-            } while (i = 1 < counter, i++);
+                i++
+            } while (i <= counter);
 
             renderizarCarrito()
             actualizarLocalStorage()
         };
     });
-    
+
+   /* inputMinus.forEach((btn) => {
+        btn.onclick = (evt) => {
+            evt.preventDefault
+            evt.parentNode.stepDown()
+        };
+    });
+
+    inputPlus.forEach((btn) => {
+        btn.onclick = (evt) => {
+            evt.preventDefault
+            evt.parentNode.stepUp()
+        };
+    }); */
+
+
     btnVaciar.addEventListener('click',(evt)=>{
         evt.preventDefault()
         vaciarCarrito()
@@ -99,7 +120,7 @@ function renderizarCarrito() {
         nodo.appendChild(boton)
         domCarrito.appendChild(nodo)
     });
-    domTotal.textContent = `\$${calcularTotal()}`
+    domTotal.textContent = `Total: \$${calcularTotal()}`
 };
 
 function borrarItemCarrito(evt){

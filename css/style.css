@@ -27,4 +27,23 @@ a:link, a:visited, a:active {
   text-align: end;
 }
 
+.mini{
+    position: fixed;
+    top: 80px;
+    right:10px;
+    background: #fff;
+    padding: 40px;
+    transition: opacity .2s ease .2s;
+}
 
+
+.products {
+
+}
+
+.mini p {
+   display: block;
+   margin: 0;
+   padding: 0;
+   line-height: 20px; 
+}

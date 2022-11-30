@@ -102,7 +102,8 @@ const pedirItems = async () => {
     data.forEach ( (item) => {
         items.push({id: item.id, nombre: item.nombre, precio: item.precio})
     }); 
-     
+    
+    cargarLocalStorage()
 };
 
 function renderizarCarrito() {
@@ -157,6 +158,7 @@ function actualizarLocalStorage(){
 function cargarLocalStorage(){
     if (localStorage.getItem('carrito')!== null) {
         carrito = JSON.parse(localStorage.getItem('carrito'))
+        renderizarCarrito()
     };
 };
 
@@ -167,5 +169,4 @@ function vaciarCarrito() {
 };
 
 pedirItems()
-cargarLocalStorage()
 renderizarCarrito();

@@ -13,6 +13,12 @@
 <body>
     <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
         <div class="container-fluid">
+            <div class="mini collapse" id="carritoCollapse">
+                <p id="carrito" class="products"></p>
+                <p id="total"></p>
+                <button id="btnComprar" class="btn btn-success">Comprar</button>
+                <button id="btnVaciar" class="btn btn-danger">Vaciar</button>
+            </div>
             <a class="navbar-brand" href="#">PokéShop</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -27,12 +33,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="btnCarrito" data-bs-toggle="collapse" data-bs-target="#carritoCollapse" href="#">Carrito</a>
-                        <div class="collapse" id="carritoCollapse">
-                            <ul id="carrito" class="list-group"></ul>
-                            <div id="total"></div>
-                            <button id="btnComprar" class="btn btn-success">Comprar</button>
-                            <button id="btnVaciar" class="btn btn-danger">Vaciar</button>
-                        </div>
                     </li>
                 </ul>
             </div>

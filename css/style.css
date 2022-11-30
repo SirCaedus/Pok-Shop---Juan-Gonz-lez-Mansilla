@@ -9,10 +9,9 @@ a:link, a:visited, a:active {
 }
 
 .imagesSizeBalls {
-    text-align: center;
-    width: 250px;
-    height: 250px;
-    margin: 20px; 
+    width: 80%;
+    aspect-ratio: 3/2; 
+    object-fit: contain;
 }
 
 .imagesSizeMeds {

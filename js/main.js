@@ -1,4 +1,4 @@
-const items = [
+const items = /* [
     {id: 1, clase: 'Ball',  nombre: 'Poke Ball', precio: 20, stock: 100, descripcion:'La ball más común. Sirve para capturar Pokémon salvajes.'},
     {id: 2, clase: 'Ball',  nombre: 'Super Ball', precio: 60, stock: 100, descripcion:'Es buena. Tiene más índice de éxito en capturas que la Poke Ball.'},
     {id: 3, clase: 'Ball', nombre: 'Ultra Ball', precio: 120, stock: 100, descripcion:'Es muy buena. Tiene más índice de éxito que la Super Ball.'},
@@ -26,7 +26,7 @@ const items = [
     {id: 25, clase: 'Med', nombre: 'Cura Total', precio: 60, stock: 100, descripcion:'Cura cualquier problema de estado.'},
     {id: 26, clase: 'Med', nombre: 'Revivir', precio: 150, stock: 100, descripcion:'Revive a un Pokémon debilitado y restaura la mitad de sus Puntos de Salud.'},
 
-];
+]; */ [];
 
 let carrito = [];
 
@@ -94,6 +94,17 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
 });
 
+const pedirItems = async () => {
+    const resp = await
+    fetch('../js/data.json')
+    const data = await resp.json()
+
+    data.forEach ( (item) => {
+        items.push({id: item.id, nombre: item.nombre, precio: item.precio})
+    }); 
+     
+};
+
 function renderizarCarrito() {
     domCarrito.textContent = ''
     const carritoSinDuplicados = [...new Set(carrito)]
@@ -155,5 +166,6 @@ function vaciarCarrito() {
     localStorage.clear()
 };
 
+pedirItems()
 cargarLocalStorage()
 renderizarCarrito();

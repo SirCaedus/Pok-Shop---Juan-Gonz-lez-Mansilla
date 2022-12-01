@@ -36,11 +36,6 @@ a:link, a:visited, a:active {
     transition: opacity .2s ease .2s;
 }
 
-
-.products {
-
-}
-
 .mini p {
    display: block;
    margin: 0;

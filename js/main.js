@@ -26,7 +26,7 @@ const pedirItems = async () => {
                                         -
                                     </button>
 
-                                    <input class="inputAdd form-control form-control-sm" id="inputId${item.id}" data-id=${item.id} min="0" max="20" name="quantity" value="1" type="number" readonly/>
+                                    <input class="form-control form-control-sm" id="inputId${item.id}" data-id=${item.id} min="1" max="20" name="quantity" value="1" type="number" readonly/>
                                     
                                     <button class="btn btn-light px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                                         +
@@ -53,9 +53,9 @@ const pedirItems = async () => {
                                         -
                                     </button>
 
-                                    <input class="inputAdd form-control form-control-sm" id="inputId${item.id}" data-id=${item.id} min="0" max="20" name="quantity" value="1" type="number" readonly/>
+                                    <input class="form-control form-control-sm" id="inputId${item.id}" data-id=${item.id} min="1" max="20" name="quantity" value="1" type="number" readonly/>
                                     
-                                    <button class="btn btn-light px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                    <button class="btn btn-light px-2 onclick="this.parentNode.querySelector('input[type=number]').stepUp()"">
                                         +
                                     </button>
                                 </p>
@@ -75,14 +75,6 @@ const pedirItems = async () => {
 const btnVaciar = document.getElementById('btnVaciar')
 const btnComprar = document.getElementById('btnComprar')
 
-
-
-const btnAdd = [...document.querySelectorAll('.btnAdd')]
-const inputAdd = [...document.querySelectorAll('.inputAdd')]
-
-//const inputMinus = [...document.querySelectorAll('.inputMinus')]
-//const inputPlus = [...document.querySelectorAll('.inputPlus')]
-
 const domCarrito = document.getElementById('carrito')
 const domTotal = document.getElementById('total')
 
@@ -91,38 +83,9 @@ const domMed = document.getElementById('Med')
 
 
 document.addEventListener('DOMContentLoaded',()=>{  
-
-   /* btnAdd.forEach((btn) => {
-        btn.onclick = (evt) =>{
-            evt.preventDefault()
-
-            let id = evt.target.getAttribute('data-id')
-            let counter = document.getElementById(`inputId${id}`)
-
-            carrito.push(counter.value)
-
-            renderizarCarrito()
-            actualizarLocalStorage()
-        };
-    }); */
-
-   /* inputMinus.forEach((btn) => {
-        btn.onclick = (evt) => {
-            evt.preventDefault
-            evt.parentNode.stepDown()
-        };
-    });
-
-    inputPlus.forEach((btn) => {
-        btn.onclick = (evt) => {
-            evt.preventDefault
-            evt.parentNode.stepUp()
-        };
-    }); */
-
-
     domBall.addEventListener('click', agregarCarrito)
     domMed.addEventListener('click', agregarCarrito)
+    domCarrito.addEventListener('click',borrarItemCarrito)
 
     btnVaciar.addEventListener('click',(evt)=>{
         evt.preventDefault()
@@ -139,62 +102,67 @@ function agregarCarrito(evt){
     if (evt.target.classList.contains("btnAdd")){
         evt.preventDefault()
         let id = evt.target.getAttribute('data-id')
-        let counter = document.getElementById(`inputId${id}`).value  
-        let i = 1     
-
-        do {
-            carrito.push(id)
-            i++
-        } while (i <= counter);
+        id = parseInt(id)
+        let counter = document.getElementById(`inputId${id}`).value
+        counter = parseInt(counter)   
+        if (carrito.some(item => item.id === id)){
+            for (const productos of carrito) {
+                if (productos.id === id){
+                    productos.cantidad += counter
+                };
+            };
+        } else {
+            carrito.push({id: id, cantidad: counter})
+        };   
 
         renderizarCarrito()
         actualizarLocalStorage() 
-    };  
+    };
 };
 
 function renderizarCarrito() {
     domCarrito.textContent = ''
-    const carritoSinDuplicados = [...new Set(carrito)]
-
-    carritoSinDuplicados.forEach((item) => {
-        const miItem = items.filter((itemDatos) => {
-            return itemDatos.id === parseInt(item)
-        });
-
-        const UnidadesItem = carrito.reduce((total, itemId) => {
-            return itemId === item ? total += 1 : total
-        }, 0);
-
-        const nodo = document.createElement('li')
-        nodo.classList.add('list-group-item', 'text-right', 'mx-2')
-        nodo.textContent = `${UnidadesItem} x ${miItem[0].nombre} - $${miItem[0].precio}`
-        const boton = document.createElement('button')
-        boton.classList.add('btn', 'btn-danger', 'mx-5')
-        boton.textContent = '-'
-        boton.style.marginLeft = '1rem'
-        boton.dataset.item = item
-        boton.addEventListener('click', borrarItemCarrito)
-
-        nodo.appendChild(boton)
-        domCarrito.appendChild(nodo)
+    carrito.forEach((item) => {
+        let id = item.id
+        id = parseInt(id)
+        domCarrito.innerHTML +=`
+                    <li class="list-group-item text-right mx-2">
+                        ${item.cantidad} x ${items[id-1].nombre} - $${items[id-1].precio}
+                        <button class="btn btn-danger mx-5" data-item=${id} style="margin-left: 1rem;">-</button>
+                    </li>
+        `
     });
     domTotal.textContent = `Total: \$${calcularTotal()}`
 };
 
 function borrarItemCarrito(evt){
-    const id = evt.target.dataset.item
-    carrito.splice(carrito.indexOf(id),1)
-    renderizarCarrito()
-    actualizarLocalStorage()
+    if (evt.target.classList.contains("btn")){
+        let id = evt.target.dataset.item
+        id = parseInt(id)
+        carrito.forEach((item) => {
+            if (item.id === id) {
+                item.cantidad -= 1 
+                if (item.cantidad === 0) {
+                    let index = carrito.indexOf(item)
+                    carrito.splice(index,1)       
+                };
+            };
+        });
+    
+        renderizarCarrito()
+        actualizarLocalStorage()
+    };
 };
 
 function calcularTotal(){
-    return carrito.reduce((total, item) => {
-        const miItem = items.filter((itemDatos) => {
-            return itemDatos.id === parseInt(item)
-        });
-        return total + miItem[0].precio
-    }, 0);
+    let total = 0
+    carrito.forEach((item) => {
+        let id = item.id
+        const resultado = items.find( (it) => it.id === id)
+        let precioProd = resultado.precio
+        total += item.cantidad * precioProd
+    });
+    return total
 };
 
 function actualizarLocalStorage(){

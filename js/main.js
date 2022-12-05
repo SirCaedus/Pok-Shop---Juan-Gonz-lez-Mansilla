@@ -81,6 +81,7 @@ const domTotal = document.getElementById('total')
 const domBall = document.getElementById('Ball')
 const domMed = document.getElementById('Med')
 
+const sonidoCompra = new Audio()
 
 document.addEventListener('DOMContentLoaded',()=>{  
     domBall.addEventListener('click', agregarCarrito)
@@ -94,7 +95,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     btnComprar.addEventListener('click',(evt)=>{
         evt.preventDefault()
-        vaciarCarrito()
+        comprarCarrito()
     });
 });
 
@@ -177,9 +178,58 @@ function cargarLocalStorage(){
 };
 
 function vaciarCarrito() {
-    carrito = []
-    renderizarCarrito()
-    localStorage.clear()
+    Swal.fire({
+        title: '¿Estás seguro que deseas borrar el contenido del carrito?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#0d6efd',
+        confirmButtonText: '¡Vaciemos el carrito!',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            carrito = []
+            renderizarCarrito()
+            localStorage.clear()
+            Swal.fire({
+                title: '¡Listo!',
+                text: 'El carrito ha sido vaciado',
+                icon: 'success'
+            })
+        };
+    })
+};
+
+function comprarCarrito() {
+    Swal.fire({
+        title: '¿Estás seguro que deseas comprar estos objetos?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#198754',
+        cancelButtonColor: '#0d6efd',
+        confirmButtonText: '¡Compremos!',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            sonidoCompra.src = '../assets/music/Pokemon Center.mp3'
+            sonidoCompra.play()
+            Swal.fire({
+                title: 'Procesando...',
+                text: 'Espere unos segundos',
+                showConfirmButton: false
+            })
+            setTimeout (() => {
+                carrito = []
+                renderizarCarrito()
+                localStorage.clear() 
+                Swal.fire({
+                    title: '¡Listo!',
+                    text: 'Espero que disfrutes tu compra',
+                    icon: 'success'
+                }) 
+            },2000)
+        };
+    })
 };
 
 pedirItems()

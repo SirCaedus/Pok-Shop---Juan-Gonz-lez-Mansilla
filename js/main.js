@@ -55,7 +55,7 @@ const pedirItems = async () => {
 
                                     <input class="form-control form-control-sm" id="inputId${item.id}" data-id=${item.id} min="1" max="20" name="quantity" value="1" type="number" readonly/>
                                     
-                                    <button class="btn btn-light px-2 onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                    <button class="btn btn-light px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                                         +
                                     </button>
                                 </p>

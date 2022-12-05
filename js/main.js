@@ -4,7 +4,7 @@ let carrito = [];
 
 const pedirItems = async () => {
     const resp = await
-    fetch('../js/data.json')
+    fetch('js/data.json')
     const data = await resp.json()
 
     data.forEach ( (item) => {

@@ -76,6 +76,7 @@ const btnVaciar = document.getElementById('btnVaciar')
 const btnComprar = document.getElementById('btnComprar')
 
 const domCarrito = document.getElementById('carrito')
+const domCountCarrito = document.getElementById('countCarrito')
 const domTotal = document.getElementById('total')
 
 const domBall = document.getElementById('Ball')
@@ -134,6 +135,7 @@ function renderizarCarrito() {
         `
     });
     domTotal.textContent = `Total: \$${calcularTotal()}`
+    domCountCarrito.textContent = `${contarTotal()}`
 };
 
 function borrarItemCarrito(evt){
@@ -163,6 +165,16 @@ function calcularTotal(){
         let precioProd = resultado.precio
         total += item.cantidad * precioProd
     });
+    return total
+};
+
+function contarTotal(){
+    let total = 0
+    if ((carrito.length)!== 0) {
+        carrito.forEach ((item) => {
+            total += item.cantidad
+        });
+    };
     return total
 };
 

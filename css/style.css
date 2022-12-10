@@ -8,6 +8,9 @@ a:link, a:visited, a:active {
     text-decoration:none;
 }
 
+.logo{
+    width: 50%;
+}
 .imagesSizeBalls {
     width: 80%;
     aspect-ratio: 3/2; 
@@ -42,6 +45,10 @@ a:link, a:visited, a:active {
 
 #carrito::-webkit-scrollbar-Thumb:hover{
     background: #555;
+}
+
+#btnCarrito img{
+    width: 10%;
 }
 
 .mini{

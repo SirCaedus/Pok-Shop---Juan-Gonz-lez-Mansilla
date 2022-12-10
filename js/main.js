@@ -13,15 +13,14 @@ const pedirItems = async () => {
         if (item.clase === 'Ball'){
             domBall.innerHTML += `
                     <div class="col">
-                        <div class="card h-100 items">
-                            <img src="assets/images/${item.clase}/${item.nombre}.webp" class="card-img-top imagesSizeBalls" alt="Imagen de ${item.nombre}">
+                        <div class="card h-100 border-info text-center">
+                            <img src="assets/images/${item.clase}/${item.nombre}.webp" class="card-img-top imagesSize" alt="Imagen de ${item.nombre}">
                             <div class="card-body">
                                 <h5 class="card-title">${item.nombre}</h5>
                                 <p class="card-text">${item.descripcion}</p>
                                 <p class="card-text">Precio: $${item.precio}</p>
-                                <p class="card-text">Stock: ${item.stock}</p>
 
-                                <p class="col-md-3 col-lg-3 col-xl-5 d-flex">
+                                <p class="d-flex">
                                     <button class="btn btn-light px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                                         -
                                     </button>
@@ -40,15 +39,14 @@ const pedirItems = async () => {
         } else {
             domMed.innerHTML += `
                     <div class="col">
-                        <div class="card h-100 items">
-                            <img src="assets/images/${item.clase}/${item.nombre}.webp" class="card-img-top imagesSizeMeds" alt="Imagen de ${item.nombre}">
+                        <div class="card h-100 border-info text-center">
+                            <img src="assets/images/${item.clase}/${item.nombre}.webp" class="card-img-top imagesSize" alt="Imagen de ${item.nombre}">
                             <div class="card-body">
                                 <h5 class="card-title">${item.nombre}</h5>
                                 <p class="card-text">${item.descripcion}</p>
                                 <p class="card-text">Precio: $${item.precio}</p>
-                                <p class="card-text">Stock: ${item.stock}</p>
 
-                                <p class="col-md-3 col-lg-3 col-xl-5 d-flex">
+                                <p class="d-flex">
                                     <button class="btn btn-light px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                                         -
                                     </button>
@@ -77,6 +75,7 @@ const btnComprar = document.getElementById('btnComprar')
 
 const domCarrito = document.getElementById('carrito')
 const domCountCarrito = document.getElementById('countCarrito')
+const domDisplayCarrito = document.getElementById('displayCarrito')
 const domTotal = document.getElementById('total')
 
 const domBall = document.getElementById('Ball')
@@ -128,9 +127,9 @@ function renderizarCarrito() {
         let id = item.id
         id = parseInt(id)
         domCarrito.innerHTML +=`
-                    <li class="list-group-item text-right mx-2">
+                    <li class="list-group-item text-right">
                         ${item.cantidad} x ${items[id-1].nombre} - $${items[id-1].precio}
-                        <button class="btn btn-danger mx-5" data-item=${id} style="margin-left: 1rem;">-</button>
+                        <button class="btn btn-danger" data-item=${id} style="margin-left: 1rem;">-</button>
                     </li>
         `
     });
@@ -242,6 +241,11 @@ function comprarCarrito() {
             },2000)
         };
     })
+};
+
+function visibilidad (){
+    domDisplayCarrito.classList.toggle('visibilityFalse')
+    domDisplayCarrito.classList.toggle('visibilityTrue')
 };
 
 pedirItems()

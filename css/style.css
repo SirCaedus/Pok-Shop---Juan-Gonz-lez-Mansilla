@@ -1,34 +1,44 @@
+html {
+    scroll-padding-top: 5rem;
+}
+
 body {
     margin: 0;
     padding: 0;
-
 }
 
+h2 {
+    text-align: center;
+}
+
+p{
+    font-size: 0.8rem;
+}
 a:link, a:visited, a:active {
     text-decoration:none;
 }
 
 .logo{
-    width: 50%;
+    width: 6rem; 
 }
-.imagesSizeBalls {
+
+.imagesSize{
     width: 80%;
     aspect-ratio: 3/2; 
     object-fit: contain;
+    margin: 0 auto;
+
 }
 
-.imagesSizeMeds {
-    width: 130px;
-    height: 180px;
-    margin: 20px;
+.navText {
+    display: none;
 }
-
 
 #carrito {
-  width: auto;
-  max-height: 340px;
-  text-align: end;
-  overflow-y: auto;
+    padding: 0;
+    max-height: 20rem;
+    text-align: end;
+    overflow-y: auto;
 }
 
 #carrito::-webkit-scrollbar{
@@ -47,22 +57,51 @@ a:link, a:visited, a:active {
     background: #555;
 }
 
-#btnCarrito img{
-    width: 10%;
-}
-
-.mini{
+#displayCarrito{
     position: fixed;
-    top: 80px;
-    right:10px;
+    max-width: 20rem;
+    top: 5rem;
+    right: 0.5rem;
+    margin-left: 0.5rem;
+    padding: 2rem;
     background: #fff;
-    padding: 40px;
-    transition: opacity .2s ease .2s;
+    font-size: 0.8rem;
 }
 
-.mini p {
-   display: block;
-   margin: 0;
-   padding: 0;
-   line-height: 20px; 
+.visibilityFalse{
+    display: none;
 }
+
+.visibilityTrue{
+    display: initial;
+
+} 
+
+/* 320px hasta 575px */
+
+@media (min-width: 576px){
+    .navText{
+        display: initial;
+    }   
+}
+
+
+@media (min-width: 992px){
+    #displayCarrito{
+        max-width: initial;
+    }
+}
+
+@media (min-width: 1200px){
+    p {
+        font-size: 1rem;
+    }
+    #displayCarrito{
+        top: 80px;
+        right: 10px;
+        left: unset;
+        padding: 40px;
+        font-size: 1rem;
+    }
+
+} 

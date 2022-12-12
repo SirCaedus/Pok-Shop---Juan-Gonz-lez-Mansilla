@@ -1,13 +1,13 @@
-html {
+html{
     scroll-padding-top: 5rem;
 }
 
-body {
+body{
     margin: 0;
     padding: 0;
 }
 
-h2 {
+h2{
     text-align: center;
 }
 
@@ -15,7 +15,7 @@ p{
     font-size: 0.8rem;
 }
 
-a:link, a:visited, a:active {
+a:link, a:visited, a:active{
     text-decoration:none;
 }
 
@@ -31,7 +31,7 @@ a:link, a:visited, a:active {
 
 }
 
-.navText {
+.navText{
     display: none;
 }
 
@@ -65,7 +65,8 @@ a:link, a:visited, a:active {
     80%{transform: rotate(-25deg)}
     100%{transform: rotate(0deg)}
 }
-#carrito {
+
+#carrito{
     padding: 0;
     max-height: 20rem;
     text-align: end;

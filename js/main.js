@@ -81,7 +81,6 @@ const domTotal = document.getElementById('total')
 const domBall = document.getElementById('Ball')
 const domMed = document.getElementById('Med')
 
-const sonidoCompra = new Audio()
 
 document.addEventListener('DOMContentLoaded',()=>{  
     domBall.addEventListener('click', agregarCarrito)
@@ -232,8 +231,6 @@ function comprarCarrito() {
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
-            sonidoCompra.src = '../assets/music/Pokemon Center.mp3'
-            sonidoCompra.play()
             Swal.fire({
                 title: 'Procesando...',
                 text: 'Espere unos segundos',

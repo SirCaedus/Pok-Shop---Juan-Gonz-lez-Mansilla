@@ -19,19 +19,19 @@ const pedirItems = async () => {
                                 <h5 class="card-title">${item.nombre}</h5>
                                 <p class="card-text">${item.descripcion}</p>
                                 <p class="card-text">Precio: $${item.precio}</p>
-
+                            </div>
+                            <div class="card-footer bg-transparent border-info">
                                 <p class="d-flex">
                                     <button class="btn btn-light px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                                         -
                                     </button>
 
                                     <input class="form-control form-control-sm" id="inputId${item.id}" data-id=${item.id} min="1" max="20" name="quantity" value="1" type="number" readonly/>
-                                    
+                            
                                     <button class="btn btn-light px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                                         +
                                     </button>
                                 </p>
-
                                 <button class="btn btn-primary btnAdd" data-id=${item.id}>Agregar al Carrito</button>                
                             </div>
                         </div>
@@ -45,19 +45,19 @@ const pedirItems = async () => {
                                 <h5 class="card-title">${item.nombre}</h5>
                                 <p class="card-text">${item.descripcion}</p>
                                 <p class="card-text">Precio: $${item.precio}</p>
-
+                            </div>
+                            <div class="card-footer bg-transparent border-info">
                                 <p class="d-flex">
                                     <button class="btn btn-light px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                                         -
                                     </button>
 
                                     <input class="form-control form-control-sm" id="inputId${item.id}" data-id=${item.id} min="1" max="20" name="quantity" value="1" type="number" readonly/>
-                                    
+                            
                                     <button class="btn btn-light px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                                         +
                                     </button>
                                 </p>
-
                                 <button class="btn btn-primary btnAdd" data-id=${item.id}>Agregar al Carrito</button>                
                             </div>
                         </div>
@@ -135,6 +135,16 @@ function renderizarCarrito() {
     });
     domTotal.textContent = `Total: \$${calcularTotal()}`
     domCountCarrito.textContent = `${contarTotal()}`
+    
+    if (btnVaciar.classList.contains('disabled')){
+        btnVaciar.classList.remove('disabled')
+        btnComprar.classList.remove('disabled')
+    };
+    
+    if (carrito.length === 0){
+        btnVaciar.classList.add('disabled')
+        btnComprar.classList.add('disabled')
+    };
 };
 
 function borrarItemCarrito(evt){
